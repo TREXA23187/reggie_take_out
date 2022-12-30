@@ -2,6 +2,7 @@ package cxt.project.filter;
 
 import com.alibaba.fastjson.JSON;
 import cxt.project.common.Result;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.AntPathMatcher;
 
 import javax.servlet.*;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+@Slf4j
 @WebFilter(filterName = "LoginCheckFilter",urlPatterns = "/*")
 public class LoginCheckFilter implements Filter {
 
@@ -23,9 +25,11 @@ public class LoginCheckFilter implements Filter {
         String[] urls = new String[]{
                 "/employee/login",
                 "/employee/logout",
-                "backend/**",
-                "front/**"
+                "/backend/**",
+                "/front/**"
         };
+
+        log.info(requestURI);
 
         boolean check = check(urls, requestURI);
         if(check){
@@ -44,7 +48,7 @@ public class LoginCheckFilter implements Filter {
 
     public boolean check(String[] urls, String requestURI){
         for (String url : urls) {
-            boolean match = PATH_MATCHER.match(url,requestURI);
+            boolean match = PATH_MATCHER.match(url, requestURI);
             if(match){
                 return true;
             }
