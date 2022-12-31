@@ -26,4 +26,11 @@ public class GlobalExceptionHandler {
         return Result.error("Unknown error");
     }
 
+    @ExceptionHandler(CustomException.class)
+    public Result<String> exceptionHandler(CustomException ex){
+        log.error(ex.getMessage());
+
+        return Result.error(ex.getMessage());
+    }
+
 }

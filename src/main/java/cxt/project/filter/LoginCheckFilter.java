@@ -1,6 +1,7 @@
 package cxt.project.filter;
 
 import com.alibaba.fastjson.JSON;
+import cxt.project.common.BaseContext;
 import cxt.project.common.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.AntPathMatcher;
@@ -38,6 +39,9 @@ public class LoginCheckFilter implements Filter {
         }
 
         if(request.getSession().getAttribute("employee") != null){
+            Long empId = (Long) request.getSession().getAttribute("employee");
+            BaseContext.setCurrentId(empId);
+
             filterChain.doFilter(request, response);
             return;
         }
