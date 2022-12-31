@@ -17,4 +17,4 @@ mybatis-plus:
       id-type: ASSIGN_ID
 
 reggie:
-  path: "/Users/chenxingyang/Pictures/reggie"
+  path: "/Users/chenxingyang/Pictures/reggie/"
