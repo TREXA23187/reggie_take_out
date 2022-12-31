@@ -18,3 +18,7 @@ mybatis-plus:
 
 reggie:
   path: "/Users/chenxingyang/Pictures/reggie/"
+
+logging:
+  level:
+    root: info
